@@ -51,6 +51,8 @@ Try connecting to `httpbin.org` again
 export https_proxy=squid:3128
 curl -I https://httpbin.org/status/200
 # Should work HTTP/2 200
+curl -I https://www.google.com
+# You should get 403 Forbidden
 ```
 
 ## Cleanup
