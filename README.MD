@@ -6,6 +6,7 @@
 - Squid documentation http://www.squid-cache.org/Doc/config/
 - Squid docker image is from [sameersbn/docker-squid](https://github.com/sameersbn/docker-squid)
 - To configure allowed websites use `http_access` keyword
+- To see access logs `exec` into container and run `tail -f /var/log/squid/access.log`  
 
 ## Workshop
 In this workshop we will deploy squid proxy and ubuntu client. Then we will show how to whitelist a website and how to configure proxy on the client.  
