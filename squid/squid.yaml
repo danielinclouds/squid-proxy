@@ -1,0 +1,44 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: squid
+spec:
+  selector:
+    matchLabels:
+      app: squid
+  template:
+    metadata:
+      labels:
+        app: squid
+    spec:
+      containers:
+      - name: squid
+        image: sameersbn/squid:3.5.27-2
+        resources: {}
+        ports:
+        - containerPort: 3128
+        volumeMounts:
+        - name: config
+          mountPath: "/etc/squid"
+          readOnly: true
+      volumes:
+        - name: config
+          configMap:
+            name: squid
+            items:
+            - key: "squid.conf"
+              path: "squid.conf"
+            - key: "errorpage.css"
+              path: "errorpage.css"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: squid
+spec:
+  selector:
+    app: squid
+  ports:
+  - port: 3128
+    targetPort: 3128
