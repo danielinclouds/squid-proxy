@@ -8,6 +8,9 @@
 - To configure allowed websites use `http_access` keyword
 - To see access logs `exec` into container and run `tail -f /var/log/squid/access.log`  
 
+## Links
+- [GCP: Configuring VMs with squid proxy](https://cloud.google.com/vpc/docs/special-configurations)
+
 ## Workshop
 In this workshop we will deploy squid proxy and ubuntu client. Then we will show how to whitelist a website and how to configure proxy on the client.  
 
