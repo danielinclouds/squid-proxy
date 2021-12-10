@@ -710,9 +710,9 @@ data:
     # Example rule allowing access from your local networks.
     # Adapt to list your (internal) IP networks from where browsing
     # should be allowed
-    #acl localnet src 10.0.0.0/8	# RFC1918 possible internal network
-    #acl localnet src 172.16.0.0/12	# RFC1918 possible internal network
-    #acl localnet src 192.168.0.0/16	# RFC1918 possible internal network
+    acl localnet src 10.0.0.0/8	# RFC1918 possible internal network
+    acl localnet src 172.16.0.0/12	# RFC1918 possible internal network
+    acl localnet src 192.168.0.0/16	# RFC1918 possible internal network
     #acl localnet src fc00::/7       # RFC 4193 local private network range
     #acl localnet src fe80::/10      # RFC 4291 link-local (directly plugged) machines
 
@@ -916,7 +916,7 @@ data:
     # We strongly recommend the following be uncommented to protect innocent
     # web applications running on the proxy server who think the only
     # one who can access services on "localhost" is a local user
-    #http_access deny to_localhost
+    http_access deny to_localhost
 
     #
     # INSERT YOUR OWN RULE(S) HERE TO ALLOW ACCESS FROM YOUR CLIENTS
@@ -931,6 +931,10 @@ data:
     # !!!! My list !!!!
     acl toblock dstdomain .httpbin.org
     http_access allow toblock
+    
+    # Protect metadata endpoint
+    acl to_metadata dst 169.254.169.254
+    http_access deny to_metadata
 
     # And finally deny all other access to this proxy
     http_access deny all
