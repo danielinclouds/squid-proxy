@@ -56,6 +56,28 @@ curl -I https://www.google.com
 # You should get 403 Forbidden
 ```
 
+## Important config items
+```sh
+# Define what it means to be a localnet
+acl localnet src 10.0.0.0/8	    # RFC1918 possible internal network
+acl localnet src 172.16.0.0/12	# RFC1918 possible internal network
+acl localnet src 192.168.0.0/16	# RFC1918 possible internal network
+
+# Deny remote access to localhost
+http_access deny to_localhost
+
+# Allows access from local networks
+http_access allow localnet
+
+# Deny remote access to metadata endpoint
+acl to_metadata dst 169.254.169.254
+http_access deny to_metadata
+
+# Allows access to a domain
+acl to_httpbin dstdomain .httpbin.org
+http_access allow to_httpbin
+```
+
 ## Cleanup
 
 ```sh
