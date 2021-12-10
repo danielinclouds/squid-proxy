@@ -59,7 +59,7 @@ curl -I https://www.google.com
 ## Important config items
 ```sh
 # Define what it means to be a localnet
-acl localnet src 10.0.0.0/8	    # RFC1918 possible internal network
+acl localnet src 10.0.0.0/8	# RFC1918 possible internal network
 acl localnet src 172.16.0.0/12	# RFC1918 possible internal network
 acl localnet src 192.168.0.0/16	# RFC1918 possible internal network
 
